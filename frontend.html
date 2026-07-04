@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northlake Family Clinic — Care that keeps pace with your day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16232B;
+    --ink-soft:#3B4A52;
+    --mist:#F3F6F5;
+    --paper:#FFFFFF;
+    --teal:#1F6F6B;
+    --teal-deep:#123F3D;
+    --teal-soft:#DCEBE9;
+    --amber:#E2A73E;
+    --amber-deep:#B9832A;
+    --slate:#5B6B6E;
+    --line:#DEE6E4;
+    --available:#3E8E5B;
+    --font-display:'Newsreader', serif;
+    --font-body:'IBM Plex Sans', -apple-system, sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --radius:14px;
+    --shadow-card: 0 1px 2px rgba(22,35,43,0.04), 0 8px 24px rgba(22,35,43,0.06);
+    --shadow-hover: 0 2px 4px rgba(22,35,43,0.06), 0 16px 36px rgba(22,35,43,0.10);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--mist);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    color:var(--ink);
+    margin:0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  p{margin:0;}
+  a{color:inherit;}
+  ul{margin:0;padding:0;list-style:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;}
+
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--ink); color:var(--mist);
+    padding:12px 18px; z-index:200; border-radius:0 0 8px 0;
+  }
+  .skip-link:focus{left:0;}
+
+  :focus-visible{
+    outline:2.5px solid var(--amber);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Motion ---------- */
+  @keyframes fadeSlideUp{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes gridDrift{
+    from{background-position:0 0, 0 0;}
+    to{background-position:42px 42px, -42px 42px;}
+  }
+  @keyframes glowPulse{
+    0%,100%{transform:scale(1); opacity:0.65;}
+    50%{transform:scale(1.1); opacity:1;}
+  }
+  @keyframes floatSlow{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+  .load-anim{
+    opacity:0;
+    animation:fadeSlideUp 0.85s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:600;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    padding:13px 24px;
+    border-radius:999px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn--primary{background:var(--amber); color:var(--ink);}
+  .btn--primary:hover{background:#ecb453; box-shadow:0 10px 24px rgba(226,167,62,0.35);}
+  .btn--outline{background:transparent; border-color:var(--line); color:var(--ink);}
+  .btn--outline:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .btn--on-dark{background:transparent; border-color:rgba(243,246,245,0.4); color:var(--mist);}
+  .btn--on-dark:hover{background:rgba(243,246,245,0.12); border-color:var(--mist);}
+  .btn--small{padding:9px 16px; font-size:13.5px;}
+  .btn--block{width:100%;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(243,246,245,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  header.is-scrolled{
+    border-bottom-color:var(--line);
+    box-shadow:0 2px 16px rgba(22,35,43,0.05);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{display:flex; align-items:center; gap:11px; text-decoration:none;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:10px;
+    background:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .brand-mark svg{width:20px; height:20px;}
+  .brand-name{font-family:var(--font-display); font-size:19px; font-weight:600; color:var(--ink); line-height:1.1;}
+  .brand-sub{font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.13em; color:var(--slate); text-transform:uppercase;}
+
+  .nav-links{display:flex; align-items:center; gap:34px;}
+  .nav-links a{
+    font-size:14.5px; font-weight:500; text-decoration:none; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+    background:var(--teal); transform:scaleX(0); transform-origin:left;
+    transition:transform 0.2s ease;
+  }
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-cta{display:flex; align-items:center; gap:16px;}
+  .nav-phone{display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:14px; color:var(--ink); text-decoration:none;}
+
+  .nav-toggle{
+    display:none; background:none; border:none; cursor:pointer; padding:6px;
+    flex-direction:column; gap:5px;
+  }
+  .nav-toggle span{width:24px; height:2px; background:var(--ink); border-radius:2px; transition:all 0.25s ease;}
+  .mobile-panel{
+    display:none; position:fixed; inset:0; top:70px; background:var(--paper);
+    z-index:99; padding:28px 32px; flex-direction:column; gap:22px;
+    overflow-y:auto;
+  }
+  .mobile-panel.is-open{display:flex;}
+  .mobile-panel a{
+    font-size:19px; font-family:var(--font-display); text-decoration:none; color:var(--ink);
+    padding-bottom:14px; border-bottom:1px solid var(--line);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:76px 0 96px;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(31,111,107,0.055) 0, rgba(31,111,107,0.055) 1px, transparent 1px, transparent 42px),
+      repeating-linear-gradient(90deg, rgba(31,111,107,0.055) 0, rgba(31,111,107,0.055) 1px, transparent 1px, transparent 42px);
+    background-size:42px 42px, 42px 42px;
+    animation:gridDrift 34s linear infinite;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--teal-soft); color:var(--teal-deep);
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em;
+    padding:6px 13px; border-radius:999px; margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 54px);
+    line-height:1.08;
+    max-width:12ch;
+  }
+  .hero h1 em{font-style:italic; color:var(--teal);}
+  .hero-sub{
+    margin-top:22px; font-size:17.5px; color:var(--ink-soft); max-width:46ch; line-height:1.6;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+
+  /* Signature schedule-card component, reused across sections */
+  .schedule-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:3px solid var(--teal);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow-card);
+    transition:box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .schedule-card:hover{box-shadow:var(--shadow-hover); transform:translateY(-2px);}
+  .schedule-card__meta{
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:var(--font-mono); font-size:12px; color:var(--slate);
+    margin-bottom:14px; letter-spacing:0.02em;
+  }
+  .schedule-card__meta .tag{
+    background:var(--teal-soft); color:var(--teal-deep); padding:3px 9px; border-radius:6px;
+    font-weight:600; letter-spacing:0.06em;
+  }
+
+  .hero-card{max-width:400px; margin-left:auto;}
+  .hero-card .schedule-card__meta{color:var(--slate);}
+  .live-row{display:flex; align-items:center; gap:8px; margin-bottom:10px;}
+  .live-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--available);
+    box-shadow:0 0 0 0 rgba(62,142,91,0.5);
+    animation:pulse 2s infinite;
+    flex-shrink:0;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(62,142,91,0.45);}
+    70%{box-shadow:0 0 0 9px rgba(62,142,91,0);}
+    100%{box-shadow:0 0 0 0 rgba(62,142,91,0);}
+  }
+  .live-label{font-family:var(--font-mono); font-size:12.5px; color:var(--available); font-weight:600; letter-spacing:0.04em;}
+  .hero-card h3{font-size:22px; margin-bottom:4px;}
+  .hero-card p{color:var(--slate); font-size:14.5px; margin-bottom:18px;}
+
+  /* ---------- Founder hero ---------- */
+  .founder-credentials{
+    display:flex; align-items:center; gap:10px; margin-top:22px;
+    font-size:13.5px; color:var(--ink-soft); flex-wrap:wrap;
+  }
+  .founder-credentials .dot-sep{color:var(--line); font-weight:700;}
+
+  .stat-row{display:flex; gap:36px; margin-top:36px; flex-wrap:wrap;}
+  .stat{display:flex; flex-direction:column;}
+  .stat-num{
+    font-family:var(--font-display); font-size:32px; font-weight:600;
+    color:var(--teal-deep); line-height:1; font-variant-numeric:tabular-nums;
+  }
+  .stat-label{font-size:12.5px; color:var(--slate); margin-top:7px;}
+
+  .founder-portrait-wrap{position:relative; max-width:340px; margin:0 auto;}
+  .portrait-glow{
+    position:absolute; inset:-34px; border-radius:50%;
+    background:radial-gradient(circle, rgba(31,111,107,0.38), transparent 70%);
+    filter:blur(22px);
+    animation:glowPulse 5.5s ease-in-out infinite;
+  }
+  .portrait-frame{
+    position:relative; z-index:1; border-radius:50%; overflow:hidden;
+    border:5px solid var(--paper); box-shadow:var(--shadow-hover); background:var(--paper);
+    transition:transform 0.35s ease;
+  }
+  .portrait-frame--lg{width:280px; height:280px; margin:0 auto; animation:floatSlow 6s ease-in-out infinite;}
+  .portrait-frame--sm{width:88px; height:88px; margin-bottom:16px;}
+  .portrait-frame svg{width:100%; height:100%; display:block;}
+  .doctor-card:hover .portrait-frame--sm{transform:scale(1.06) rotate(-2deg);}
+
+  .founder-badge{
+    display:block; width:max-content; margin:18px auto 0; text-align:center;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em; text-transform:uppercase;
+    color:var(--teal-deep); background:var(--teal-soft); padding:7px 15px; border-radius:999px;
+    position:relative; z-index:1;
+  }
+  .hero-mini-card{
+    margin:20px auto 0; max-width:270px; position:relative; z-index:1;
+  }
+
+  /* ---------- Trust strip ---------- */
+  .trust{
+    background:var(--ink); color:var(--mist); padding:20px 0;
+  }
+  .trust-list{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px;
+  }
+  .trust-item{display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(243,246,245,0.9);}
+  .trust-item svg{width:17px; height:17px; flex-shrink:0; color:var(--amber);}
+
+  /* ---------- Section shell ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(28px, 3.2vw, 38px); line-height:1.15;}
+  .section-head p{margin-top:14px; color:var(--slate); font-size:16px; line-height:1.6;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+  }
+  .service-card h3{font-size:19px; margin-bottom:8px;}
+  .service-card p{font-size:14.5px; color:var(--slate); line-height:1.55;}
+
+  /* ---------- Care team ---------- */
+  .team-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;
+  }
+  .doctor-card{padding:24px 20px; text-align:left;}
+  .avatar{
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:600; font-size:17px; color:#fff;
+    margin-bottom:16px;
+  }
+  .doctor-card h3{font-size:17.5px; margin-bottom:3px;}
+  .doctor-specialty{font-size:13.5px; color:var(--slate); margin-bottom:14px;}
+  .doctor-next{
+    font-family:var(--font-mono); font-size:12px; color:var(--available);
+    display:flex; align-items:center; gap:6px; font-weight:600;
+  }
+  .doctor-next .live-dot{width:6px; height:6px;}
+
+  /* ---------- Visit flow ---------- */
+  .flow{background:var(--teal-deep); color:var(--mist);}
+  .flow .section-head p{color:rgba(243,246,245,0.75);}
+  .flow .eyebrow{color:var(--amber);}
+  .flow-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:24px;
+    counter-reset:step;
+  }
+  .flow-step{position:relative; padding-top:8px;}
+  .flow-step::before{
+    counter-increment:step;
+    content:counter(step, decimal-leading-zero);
+    font-family:var(--font-mono); font-size:13px; color:var(--amber);
+    display:block; margin-bottom:16px; letter-spacing:0.05em;
+  }
+  .flow-step h3{color:var(--mist); font-size:19px; margin-bottom:8px;}
+  .flow-step p{color:rgba(243,246,245,0.72); font-size:14.5px; line-height:1.6;}
+  .flow-step:not(:last-child)::after{
+    content:''; position:absolute; top:14px; left:calc(100% - 6px); width:calc(100% - 20px);
+    height:1px; background:rgba(243,246,245,0.2); display:none;
+  }
+  @media (min-width:900px){
+    .flow-step:not(:last-child)::after{display:block;}
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonial-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .testimonial-card{padding:26px 24px;}
+  .testimonial-card p.quote{
+    font-family:var(--font-display); font-style:italic; font-size:17px; line-height:1.55;
+    color:var(--ink); margin-bottom:16px;
+  }
+  .testimonial-who{font-family:var(--font-mono); font-size:12.5px; color:var(--slate);}
+
+  /* ---------- Staggered cascade + micro-interactions ---------- */
+  .services-grid > .reveal:nth-child(1){transition-delay:0s;}
+  .services-grid > .reveal:nth-child(2){transition-delay:.07s;}
+  .services-grid > .reveal:nth-child(3){transition-delay:.14s;}
+  .services-grid > .reveal:nth-child(4){transition-delay:.21s;}
+  .services-grid > .reveal:nth-child(5){transition-delay:.28s;}
+  .services-grid > .reveal:nth-child(6){transition-delay:.35s;}
+
+  .team-grid > .reveal:nth-child(1){transition-delay:0s;}
+  .team-grid > .reveal:nth-child(2){transition-delay:.08s;}
+  .team-grid > .reveal:nth-child(3){transition-delay:.16s;}
+  .team-grid > .reveal:nth-child(4){transition-delay:.24s;}
+
+  .flow-grid > .reveal:nth-child(1){transition-delay:0s;}
+  .flow-grid > .reveal:nth-child(2){transition-delay:.08s;}
+  .flow-grid > .reveal:nth-child(3){transition-delay:.16s;}
+  .flow-grid > .reveal:nth-child(4){transition-delay:.24s;}
+
+  .testimonial-grid > .reveal:nth-child(1){transition-delay:0s;}
+  .testimonial-grid > .reveal:nth-child(2){transition-delay:.1s;}
+  .testimonial-grid > .reveal:nth-child(3){transition-delay:.2s;}
+
+  .service-card{transition:box-shadow 0.25s ease, transform 0.25s ease;}
+  .service-card:hover .tag{transform:rotate(-5deg) scale(1.05);}
+  .service-card .tag{display:inline-block; transition:transform 0.25s ease;}
+
+  .flow-step h3{transition:transform 0.25s ease;}
+  .flow-step:hover h3{transform:translateX(4px);}
+
+  /* ---------- Hours & location ---------- */
+  .hours-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:44px; align-items:start;}
+  .hours-table{width:100%; border-collapse:collapse;}
+  .hours-table tr{border-bottom:1px solid var(--line);}
+  .hours-table tr:last-child{border-bottom:none;}
+  .hours-table td{padding:13px 0; font-size:15px;}
+  .hours-table td:first-child{color:var(--slate);}
+  .hours-table td:last-child{text-align:right; font-family:var(--font-mono); font-weight:500;}
+  .hours-table tr.today td{color:var(--teal); font-weight:600;}
+
+  .location-visual{
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+    background:
+      linear-gradient(135deg, var(--teal-soft) 0%, #eef4f3 60%);
+    aspect-ratio:16/11; position:relative;
+  }
+  .location-visual svg{position:absolute; inset:0; width:100%; height:100%;}
+  .address-block{margin-top:20px;}
+  .address-block .eyebrow{display:block; margin-bottom:8px;}
+  .address-block address{font-style:normal; font-size:16px; line-height:1.6;}
+  .address-block .phone{font-family:var(--font-mono); margin-top:10px; display:inline-block; font-size:15px; color:var(--teal-deep); text-decoration:none;}
+
+  /* ---------- Appointment form ---------- */
+  .appointment{background:var(--paper);}
+  .appointment-shell{
+    background:var(--mist); border:1px solid var(--line); border-radius:20px;
+    padding:44px; display:grid; grid-template-columns:0.8fr 1.2fr; gap:48px;
+  }
+  .appointment-info h2{font-size:clamp(26px,3vw,32px); margin-bottom:14px;}
+  .appointment-info p{color:var(--slate); font-size:15.5px; line-height:1.6; margin-bottom:22px;}
+  .appointment-note{
+    display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--ink-soft);
+    background:var(--teal-soft); border-radius:10px; padding:14px 16px;
+  }
+  .appointment-note svg{width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--teal-deep);}
+
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .field{display:flex; flex-direction:column; gap:7px; margin-bottom:16px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{font-size:13px; font-weight:600; color:var(--ink-soft);}
+  .field input, .field select, .field textarea{
+    font-family:var(--font-body); font-size:15px; padding:12px 14px;
+    border:1.5px solid var(--line); border-radius:9px; background:var(--paper); color:var(--ink);
+    transition:border-color 0.18s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-color:var(--teal); outline:none;
+  }
+  .field textarea{resize:vertical; min-height:80px; font-family:inherit;}
+  .form-foot{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:6px; flex-wrap:wrap;}
+  .form-disclaimer{font-size:12.5px; color:var(--slate); max-width:60%;}
+
+  .confirmation{
+    display:none; text-align:center; padding:30px 20px;
+  }
+  .confirmation.is-visible{display:block;}
+  .confirmation-icon{
+    width:52px; height:52px; border-radius:50%; background:var(--available); color:#fff;
+    display:flex; align-items:center; justify-content:center; margin:0 auto 18px;
+  }
+  .confirmation h3{font-size:22px; margin-bottom:10px;}
+  .confirmation p{color:var(--slate); font-size:15px; line-height:1.6;}
+  .confirmation .detail{
+    margin-top:18px; font-family:var(--font-mono); font-size:13.5px; color:var(--teal-deep);
+    background:var(--teal-soft); display:inline-block; padding:10px 16px; border-radius:8px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:rgba(243,246,245,0.85); padding:64px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  .footer-brand p{margin-top:14px; font-size:14px; color:rgba(243,246,245,0.6); line-height:1.6; max-width:32ch;}
+  .footer-col h4{font-family:var(--font-mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:16px; font-weight:600;}
+  .footer-col a{display:block; font-size:14.5px; color:rgba(243,246,245,0.75); text-decoration:none; margin-bottom:11px;}
+  .footer-col a:hover{color:var(--mist);}
+  .footer-bottom{
+    border-top:1px solid rgba(243,246,245,0.14); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:13px; color:rgba(243,246,245,0.5);
+  }
+  .footer-emergency{color:var(--amber); font-weight:600;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .nav-links, .nav-phone{display:none;}
+    .nav-toggle{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-card{margin-left:0; max-width:420px;}
+    .services-grid{grid-template-columns:repeat(2, 1fr);}
+    .team-grid{grid-template-columns:repeat(2, 1fr);}
+    .flow-grid{grid-template-columns:repeat(2, 1fr); row-gap:36px;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .hours-grid{grid-template-columns:1fr; gap:32px;}
+    .appointment-shell{grid-template-columns:1fr; padding:28px;}
+    .footer-grid{grid-template-columns:1fr 1fr; row-gap:32px;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    .hero{padding:52px 0 64px;}
+    section{padding:64px 0;}
+    .services-grid, .team-grid, .flow-grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .trust-list{justify-content:flex-start;}
+    .form-disclaimer{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3L4 7v6c0 5 3.5 7.5 8 8 4.5-0.5 8-3 8-8V7l-8-4z" stroke="#F3F6F5" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M9 12.5l2 2 4-4.2" stroke="#F3F6F5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span>
+        <span class="brand-name" style="display:block;">Northlake</span>
+        <span class="brand-sub">Family Clinic</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#team">Care team</a>
+      <a href="#visit">How it works</a>
+      <a href="#location">Hours &amp; location</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:+15552401878" class="nav-phone">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1.1L6.6 10.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        (555) 240-1878
+      </a>
+      <a href="#appointment" class="btn btn--primary btn--small">Book a visit</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#services">Services</a>
+    <a href="#team">Care team</a>
+    <a href="#visit">How it works</a>
+    <a href="#location">Hours &amp; location</a>
+    <a href="#appointment">Book a visit</a>
+    <a href="tel:+15552401878">Call (555) 240-1878</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top" style="padding-top:76px;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-eyebrow load-anim" style="animation-delay:.05s;">A note from our founder</span>
+        <h1 class="load-anim" style="animation-delay:.16s;">"Every patient deserves <em>a doctor who remembers them</em>"</h1>
+        <p class="hero-sub load-anim" style="animation-delay:.3s;">I'm Dr. Maya Alvarez. I started Northlake in 2011 because I was tired of watching patients get treated like a number. Fifteen years on, our whole team still runs on that one idea — same-day care, real relationships, no rush.</p>
+
+        <div class="founder-credentials load-anim" style="animation-delay:.42s;">
+          <span>Board Certified, Family Medicine</span>
+          <span class="dot-sep">•</span>
+          <span>Founder, Northlake Family Clinic</span>
+        </div>
+
+        <div class="hero-actions load-anim" style="animation-delay:.54s;">
+          <a href="#appointment" class="btn btn--primary">Book an appointment</a>
+          <a href="tel:+15552401878" class="btn btn--outline">Call the clinic</a>
+        </div>
+
+        <div class="stat-row load-anim" style="animation-delay:.68s;">
+          <div class="stat"><span class="stat-num" data-target="14" data-suffix="+">0</span><span class="stat-label">Years in practice</span></div>
+          <div class="stat"><span class="stat-num" data-target="6200" data-suffix="+">0</span><span class="stat-label">Patients cared for</span></div>
+          <div class="stat"><span class="stat-num" data-target="4.9" data-decimal="1">0</span><span class="stat-label">Average rating</span></div>
+        </div>
+      </div>
+
+      <div class="founder-portrait-wrap load-anim" style="animation-delay:.22s;">
+        <div class="portrait-glow" aria-hidden="true"></div>
+        <div class="portrait-frame portrait-frame--lg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated portrait of Dr. Maya Alvarez">
+            <rect width="200" height="200" fill="#DCEBE9"/>
+            <path d="M40 200 C40 148 68 128 100 128 C132 128 160 148 160 200 Z" fill="#FFFFFF"/>
+            <path d="M84 130 L100 156 L116 130" fill="none" stroke="#1F6F6B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="86" y="106" width="28" height="32" rx="8" fill="#D9A066"/>
+            <ellipse cx="100" cy="84" rx="37" ry="41" fill="#D9A066"/>
+            <path d="M61 70 C58 38 76 18 100 18 C124 18 142 38 139 70 C139 54 126 43 100 43 C74 43 61 54 61 70 Z" fill="#3B2A21"/>
+            <path d="M62 68 C57 92 59 114 67 126 C71 106 66 84 68 66 Z" fill="#3B2A21"/>
+            <path d="M138 68 C143 92 141 114 133 126 C129 106 134 84 132 66 Z" fill="#3B2A21"/>
+          </svg>
+        </div>
+        <span class="founder-badge">Founder &amp; Lead Physician</span>
+
+        <div class="schedule-card hero-mini-card">
+          <div class="live-row">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span class="live-label">Next opening with Dr. Alvarez</span>
+          </div>
+          <div class="schedule-card__meta" style="margin-top:8px;">
+            <span>TODAY · 2:40 PM</span>
+            <span class="tag">30 MIN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRUST STRIP ================= -->
+  <div class="trust">
+    <div class="wrap trust-list">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg>
+        Same-day visits available
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M4 6h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Walk-ins welcome, weekdays
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Most major insurance accepted
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Se habla español
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Services</span>
+        <h2>One clinic, most of what your family needs</h2>
+        <p>Every visit type below is bookable online, with typical durations shown so you know what to expect before you arrive.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="schedule-card service-card reveal">
+          <div class="schedule-card__meta"><span class="tag">ANNUAL</span><span>30 min</span></div>
+          <h3>Primary care</h3>
+          <p>Ongoing care for adults — check-ups, prescriptions, referrals, and everything in between.</p>
+        </div>
+        <div class="schedule-card service-card reveal">
+          <div class="schedule-card__meta"><span class="tag">AGES 0–17</span><span>30 min</span></div>
+          <h3>Pediatrics</h3>
+          <p>Well-child visits, vaccinations, and same-day care when your kid wakes up not feeling right.</p>
+        </div>
+        <div class="schedule-card service-card reveal">
+          <div class="schedule-card__meta"><span class="tag">WELLNESS</span><span>45 min</span></div>
+          <h3>Preventive screenings</h3>
+          <p>Bloodwork, cancer screenings, and routine labs — scheduled to catch things early.</p>
+        </div>
+        <div class="schedule-card service-card reveal">
+          <div class="schedule-card__meta"><span class="tag">ONGOING</span><span>30 min</span></div>
+          <h3>Chronic care management</h3>
+          <p>Diabetes, hypertension, and long-term conditions, tracked visit over visit by one doctor.</p>
+        </div>
+        <div class="schedule-card service-card reveal">
+          <div class="schedule-card__meta"><span class="tag">WELLNESS</span><span>45 min</span></div>
+          <h3>Women's health</h3>
+          <p>Annual exams, reproductive health, and prenatal referrals in a private, unhurried setting.</p>
+        </div>
+        <div class="schedule-card service-card reveal">
+          <div class="schedule-card__meta"><span class="tag">TODAY</span><span>20 min</span></div>
+          <h3>Same-day urgent visits</h3>
+          <p>Not an emergency, can't wait a week — sprains, fevers, infections, and the like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CARE TEAM ================= -->
+  <section id="team" style="background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Care team</span>
+        <h2>Meet the doctors you'll actually see</h2>
+        <p>Northlake is small on purpose — a short roster means you see a familiar face at every visit.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="schedule-card doctor-card reveal">
+          <div class="portrait-frame portrait-frame--sm">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated portrait of Dr. Maya Alvarez">
+              <rect width="200" height="200" fill="#DCEBE9"/>
+              <path d="M40 200 C40 148 68 128 100 128 C132 128 160 148 160 200 Z" fill="#FFFFFF"/>
+              <path d="M84 130 L100 156 L116 130" fill="none" stroke="#1F6F6B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="86" y="106" width="28" height="32" rx="8" fill="#D9A066"/>
+              <ellipse cx="100" cy="84" rx="37" ry="41" fill="#D9A066"/>
+              <path d="M61 70 C58 38 76 18 100 18 C124 18 142 38 139 70 C139 54 126 43 100 43 C74 43 61 54 61 70 Z" fill="#3B2A21"/>
+              <path d="M62 68 C57 92 59 114 67 126 C71 106 66 84 68 66 Z" fill="#3B2A21"/>
+              <path d="M138 68 C143 92 141 114 133 126 C129 106 134 84 132 66 Z" fill="#3B2A21"/>
+            </svg>
+          </div>
+          <h3>Dr. Maya Alvarez</h3>
+          <p class="doctor-specialty">Family Medicine · Founder</p>
+          <span class="doctor-next"><span class="live-dot"></span>Today · 2:40 PM</span>
+        </div>
+
+        <div class="schedule-card doctor-card reveal">
+          <div class="portrait-frame portrait-frame--sm">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated portrait of Dr. James Okafor">
+              <rect width="200" height="200" fill="#F4E6C8"/>
+              <path d="M40 200 C40 148 68 128 100 128 C132 128 160 148 160 200 Z" fill="#16232B"/>
+              <path d="M84 130 L100 150 L116 130" fill="none" stroke="#F3F6F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="86" y="106" width="28" height="32" rx="8" fill="#8A5A34"/>
+              <ellipse cx="100" cy="84" rx="37" ry="41" fill="#8A5A34"/>
+              <path d="M64 74 C60 44 78 21 100 21 C122 21 140 44 136 74 C136 59 122 49 100 49 C78 49 64 59 64 74 Z" fill="#161311"/>
+            </svg>
+          </div>
+          <h3>Dr. James Okafor</h3>
+          <p class="doctor-specialty">Internal Medicine</p>
+          <span class="doctor-next"><span class="live-dot"></span>Tomorrow · 9:15 AM</span>
+        </div>
+
+        <div class="schedule-card doctor-card reveal">
+          <div class="portrait-frame portrait-frame--sm">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated portrait of Dr. Priya Nair">
+              <rect width="200" height="200" fill="#E3ECE6"/>
+              <path d="M40 200 C40 148 68 128 100 128 C132 128 160 148 160 200 Z" fill="#FFFFFF"/>
+              <path d="M84 130 L100 156 L116 130" fill="none" stroke="#1F6F6B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="86" y="106" width="28" height="32" rx="8" fill="#E3B589"/>
+              <ellipse cx="100" cy="84" rx="37" ry="41" fill="#E3B589"/>
+              <circle cx="100" cy="26" r="14" fill="#1E1611"/>
+              <path d="M62 72 C58 42 76 20 100 20 C124 20 142 42 138 72 C138 56 124 46 100 46 C76 46 62 56 62 72 Z" fill="#1E1611"/>
+              <path d="M63 70 C58 100 60 125 68 135 C72 110 66 90 68 70 Z" fill="#1E1611"/>
+              <path d="M137 70 C142 100 140 125 132 135 C128 110 134 90 132 70 Z" fill="#1E1611"/>
+            </svg>
+          </div>
+          <h3>Dr. Priya Nair</h3>
+          <p class="doctor-specialty">Pediatrics</p>
+          <span class="doctor-next"><span class="live-dot"></span>Today · 4:00 PM</span>
+        </div>
+
+        <div class="schedule-card doctor-card reveal">
+          <div class="portrait-frame portrait-frame--sm">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated portrait of Dr. Ben Whitfield">
+              <rect width="200" height="200" fill="#E7EAEA"/>
+              <path d="M40 200 C40 148 68 128 100 128 C132 128 160 148 160 200 Z" fill="#1F6F6B"/>
+              <path d="M84 130 L100 152 L116 130" fill="none" stroke="#F3F6F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="86" y="106" width="28" height="32" rx="8" fill="#F0C8A0"/>
+              <ellipse cx="100" cy="84" rx="37" ry="41" fill="#F0C8A0"/>
+              <path d="M68 66 C66 46 80 31 100 31 C120 31 134 46 132 66 C132 56 120 49 100 49 C80 49 68 56 68 66 Z" fill="#9A9186"/>
+              <rect x="72" y="80" width="24" height="18" rx="6" fill="none" stroke="#16232B" stroke-width="3"/>
+              <rect x="104" y="80" width="24" height="18" rx="6" fill="none" stroke="#16232B" stroke-width="3"/>
+              <line x1="96" y1="88" x2="104" y2="88" stroke="#16232B" stroke-width="3"/>
+            </svg>
+          </div>
+          <h3>Dr. Ben Whitfield</h3>
+          <p class="doctor-specialty">Preventive &amp; Wellness</p>
+          <span class="doctor-next"><span class="live-dot"></span>Monday · 8:30 AM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="flow" id="visit">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">How a visit works</span>
+        <h2>From booking to your care plan, in four steps</h2>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-step reveal">
+          <h3>Book your visit</h3>
+          <p>Choose a doctor, a reason for the visit, and a time — online in under two minutes, or by phone.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>Check in</h3>
+          <p>Arrive 10 minutes early, or check in from your phone before you get here to skip the front desk.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>See your doctor</h3>
+          <p>Unhurried visits — your doctor has your full history pulled up before you sit down.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>Get your plan</h3>
+          <p>Notes, prescriptions, and next steps land in your patient portal before you're back in the car.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Patient notes</span>
+        <h2>What it's like to be a patient here</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="schedule-card testimonial-card reveal">
+          <p class="quote">"I called about a fever at 8am and had a same-day slot by 8:04. Didn't sit in a waiting room once."</p>
+          <p class="testimonial-who">M.T. — patient since 2019</p>
+        </div>
+        <div class="schedule-card testimonial-card reveal">
+          <p class="quote">"My doctor actually remembered what we talked about last visit. That alone changed how I feel about going in."</p>
+          <p class="testimonial-who">R.K. — patient since 2022</p>
+        </div>
+        <div class="schedule-card testimonial-card reveal">
+          <p class="quote">"Booked my daughter's check-up on my phone during her nap. Portal notes were up before we left the parking lot."</p>
+          <p class="testimonial-who">S.D. — new patient</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOURS & LOCATION ================= -->
+  <section id="location" style="background:var(--paper); border-top:1px solid var(--line);">
+    <div class="wrap hours-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="display:block; margin-bottom:14px;">Hours</span>
+        <table class="hours-table" aria-label="Clinic hours">
+          <tr class="today"><td>Saturday</td><td>9:00 AM – 1:00 PM</td></tr>
+          <tr><td>Sunday</td><td>Closed</td></tr>
+          <tr><td>Monday</td><td>8:00 AM – 6:00 PM</td></tr>
+          <tr><td>Tuesday</td><td>8:00 AM – 6:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>8:00 AM – 6:00 PM</td></tr>
+          <tr><td>Thursday</td><td>8:00 AM – 6:00 PM</td></tr>
+          <tr><td>Friday</td><td>8:00 AM – 6:00 PM</td></tr>
+        </table>
+
+        <div class="address-block">
+          <span class="eyebrow">Location</span>
+          <address>412 Alder Street, Suite 200<br>Northlake, OR 97210</address>
+          <a href="tel:+15552401878" class="phone">(555) 240-1878</a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="location-visual" role="img" aria-label="Illustrative map showing the clinic location near Alder Street and the Northlake waterfront">
+          <svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="280" fill="#EEF4F3"/>
+            <path d="M0 210 C 80 190, 160 230, 260 200 C 320 182, 360 200, 400 190 L400 280 L0 280 Z" fill="#CBE0DD"/>
+            <line x1="0" y1="60" x2="400" y2="45" stroke="#C7D6D3" stroke-width="6"/>
+            <line x1="0" y1="120" x2="400" y2="110" stroke="#C7D6D3" stroke-width="10"/>
+            <line x1="130" y1="0" x2="150" y2="280" stroke="#C7D6D3" stroke-width="8"/>
+            <line x1="270" y1="0" x2="255" y2="280" stroke="#C7D6D3" stroke-width="6"/>
+            <circle cx="190" cy="118" r="9" fill="#1F6F6B"/>
+            <circle cx="190" cy="118" r="16" fill="none" stroke="#1F6F6B" stroke-width="2" opacity="0.4"/>
+            <text x="205" y="123" font-family="IBM Plex Mono, monospace" font-size="12" fill="#16232B" font-weight="600">Northlake Family Clinic</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= APPOINTMENT FORM ================= -->
+  <section class="appointment" id="appointment">
+    <div class="wrap">
+      <div class="appointment-shell">
+        <div class="appointment-info">
+          <span class="eyebrow">Request an appointment</span>
+          <h2 style="margin-top:12px;">Tell us what's going on</h2>
+          <p>Fill this out and our care team will call to confirm your exact time — usually within one business day. For anything urgent today, please call the clinic directly.</p>
+          <div class="appointment-note">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9L2.5 17a1.5 1.5 0 001.3 2.2h16.4a1.5 1.5 0 001.3-2.2L13.7 3.9a1.5 1.5 0 00-2.6 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            This form isn't for medical emergencies. If this is an emergency, call 911.
+          </div>
+        </div>
+
+        <div>
+          <form id="appointmentForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="fullName">Full name</label>
+                <input type="text" id="fullName" name="fullName" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" required autocomplete="tel">
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="doctor">Preferred doctor</label>
+                <select id="doctor" name="doctor">
+                  <option value="">No preference</option>
+                  <option>Dr. Maya Alvarez — Family Medicine</option>
+                  <option>Dr. James Okafor — Internal Medicine</option>
+                  <option>Dr. Priya Nair — Pediatrics</option>
+                  <option>Dr. Ben Whitfield — Preventive &amp; Wellness</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="reason">Reason for visit</label>
+                <select id="reason" name="reason" required>
+                  <option value="">Select one</option>
+                  <option>Annual check-up</option>
+                  <option>New symptoms</option>
+                  <option>Follow-up visit</option>
+                  <option>Prescription renewal</option>
+                  <option>Pediatric visit</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="preferredDate">Preferred date</label>
+                <input type="date" id="preferredDate" name="preferredDate" required>
+              </div>
+              <div class="field full">
+                <label for="notes">Anything we should know? (optional)</label>
+                <textarea id="notes" name="notes" placeholder="Symptoms, timing constraints, or questions for the doctor"></textarea>
+              </div>
+            </div>
+
+            <div class="form-foot">
+              <span class="form-disclaimer">By submitting, you agree to be contacted by phone or email to confirm your visit.</span>
+              <button type="submit" class="btn btn--primary">Request appointment</button>
+            </div>
+          </form>
+
+          <div class="confirmation" id="confirmation">
+            <div class="confirmation-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Request received</h3>
+            <p>Thanks, <span id="confirmName">there</span> — our care team will call <span id="confirmPhone"></span> within one business day to confirm your visit.</p>
+            <div class="detail" id="confirmDetail"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v6c0 5 3.5 7.5 8 8 4.5-0.5 8-3 8-8V7l-8-4z" stroke="#F3F6F5" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12.5l2 2 4-4.2" stroke="#F3F6F5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>
+            <span class="brand-name" style="color:var(--mist); display:block;">Northlake</span>
+            <span class="brand-sub" style="color:rgba(243,246,245,0.55);">Family Clinic</span>
+          </span>
+        </a>
+        <p>Independent family clinic serving Northlake and the surrounding neighborhoods since 2011.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Clinic</h4>
+        <a href="#services">Services</a>
+        <a href="#team">Care team</a>
+        <a href="#visit">How it works</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <a href="#location">Hours &amp; location</a>
+        <a href="#appointment">Book an appointment</a>
+        <a href="tel:+15552401878">Call the clinic</a>
+      </div>
+      <div class="footer-col">
+        <h4>Patients</h4>
+        <a href="#">Patient portal</a>
+        <a href="#">Insurance &amp; billing</a>
+        <a href="#">New patient forms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Northlake Family Clinic. All rights reserved.</span>
+      <span class="footer-emergency">Medical emergency? Call 911.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Sticky header shadow on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobilePanel.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  mobilePanel.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobilePanel.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Animated stat counters
+  function animateCounter(el){
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimal || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1300;
+    const start = performance.now();
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toFixed(decimals) + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+  const statEls = document.querySelectorAll('.stat-num');
+  const statIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        statIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statEls.forEach(el => statIO.observe(el));
+
+  // Appointment form (frontend-only simulation)
+  const form = document.getElementById('appointmentForm');
+  const confirmation = document.getElementById('confirmation');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const data = new FormData(form);
+    const name = (data.get('fullName') || '').toString().trim().split(' ')[0] || 'there';
+    const phone = data.get('phone');
+    const date = data.get('preferredDate');
+    const reason = data.get('reason');
+
+    document.getElementById('confirmName').textContent = name;
+    document.getElementById('confirmPhone').textContent = phone;
+
+    let dateLabel = '';
+    if (date) {
+      const d = new Date(date + 'T00:00:00');
+      dateLabel = d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+    }
+    document.getElementById('confirmDetail').textContent = `${reason || 'Visit'} · ${dateLabel || 'date to be confirmed'}`;
+
+    form.style.display = 'none';
+    confirmation.classList.add('is-visible');
+    confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+
+</body>
+</html>
