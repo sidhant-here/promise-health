@@ -7,10 +7,10 @@ export const clinicConfig = {
   founder: {
     name: "Dr. Prashant Parihar",
     quote: "Every patient deserves a doctor who remembers them",
-    subquote: "I'm Dr. Prashant Parihar. I started Promise Health in 2011 because I was tired of watching patients get treated like a number. Fifteen years on, our whole team still runs on that one idea — same-day care, real relationships, no rush.",
+    subquote: "I'm Dr. Prashant Parihar. I started Promise Health in 2026 because I was tired of watching patients get treated like a number. We built this entire practice around one simple idea — same-day care, real relationships, no rush.",
     stats: [
-      { num: 14, suffix: "+", label: "Years in practice" },
-      { num: 6200, suffix: "+", label: "Patients cared for" },
+      { num: 15, suffix: "+", label: "Years in practice" },
+      { num: 1200, suffix: "+", label: "Patients cared for" },
       { num: 4.9, suffix: "", decimals: 1, label: "Average rating" }
     ]
   },
@@ -29,7 +29,7 @@ export const clinicConfig = {
       next: "Today · 2:40 PM",
       color: "#D9A066",
       bg: "#DCEBE9",
-      bio: "Board-certified in family medicine with 14+ years of clinical experience. Founded Promise Health to deliver relationship-driven primary care.",
+      bio: "Board-certified in family medicine with 15+ years of clinical experience. Founded Promise Health in 2026 to deliver relationship-driven primary care.",
       education: "MBBS, MD — Family Medicine",
       languages: ["English", "Hindi"],
       slots: [
@@ -91,8 +91,8 @@ export const clinicConfig = {
     { title: "Get your plan", desc: "Notes, prescriptions, and next steps land in your patient portal before you're back in the car." }
   ],
   testimonials: [
-    { quote: "I called about a fever at 8am and had a same-day slot by 8:04. Didn't sit in a waiting room once.", author: "M.T. — patient since 2019" },
-    { quote: "My doctor actually remembered what we talked about last visit. That alone changed how I feel about going in.", author: "R.K. — patient since 2022" },
+    { quote: "I called about a fever at 8am and had a same-day slot by 8:04. Didn't sit in a waiting room once.", author: "M.T. — founding patient" },
+    { quote: "My doctor actually remembered what we talked about last visit. That alone changed how I feel about going in.", author: "R.K. — patient since 2026" },
     { quote: "Booked my daughter's check-up on my phone during her nap. Portal notes were up before we left the parking lot.", author: "S.D. — new patient" }
   ],
   hours: [
