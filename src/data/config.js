@@ -103,5 +103,37 @@ export const clinicConfig = {
     { day: "Wednesday", time: "8:00 AM – 6:00 PM", active: false },
     { day: "Thursday", time: "8:00 AM – 6:00 PM", active: false },
     { day: "Friday", time: "8:00 AM – 6:00 PM", active: false }
+  ],
+  doctorPassword: "promise2026",
+  mockPatients: [
+    {
+      id: "p1",
+      name: "Meera Sharma",
+      email: "meera@example.com",
+      phone: "(555) 101-2020",
+      appointments: [
+        { id: "a1", doctor: "Dr. Prashant Parihar", specialty: "Family Medicine · Founder", day: "Today", time: "2:40 PM", reason: "Annual check-up", status: "Confirmed", color: "#D9A066", bookedAt: "2 hours ago" },
+        { id: "a2", doctor: "Dr. Priya Nair", specialty: "Pediatrics", day: "Thursday", time: "10:30 AM", reason: "Child vaccination", status: "Confirmed", color: "#E3B589", bookedAt: "Yesterday" }
+      ]
+    },
+    {
+      id: "p2",
+      name: "Ravi Kumar",
+      email: "ravi@example.com",
+      phone: "(555) 303-4040",
+      appointments: [
+        { id: "a3", doctor: "Dr. James Okafor", specialty: "Internal Medicine", day: "Tomorrow", time: "9:15 AM", reason: "Blood pressure review", status: "Confirmed", color: "#8A5A34", bookedAt: "3 days ago" }
+      ]
+    },
+    {
+      id: "p3",
+      name: "Sara Diaz",
+      email: "sara@example.com",
+      phone: "(555) 505-6060",
+      appointments: [
+        { id: "a4", doctor: "Dr. Ben Whitfield", specialty: "Preventive & Wellness", day: "Monday", time: "8:30 AM", reason: "Preventive screening", status: "Confirmed", color: "#F0C8A0", bookedAt: "1 week ago" },
+        { id: "a5", doctor: "Dr. Prashant Parihar", specialty: "Family Medicine · Founder", day: "Wednesday", time: "11:00 AM", reason: "Follow-up visit", status: "Confirmed", color: "#D9A066", bookedAt: "5 days ago" }
+      ]
+    }
   ]
 };

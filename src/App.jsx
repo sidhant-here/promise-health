@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { clinicConfig } from './data/config.js';
 import './index.css';
+import { useAuth } from './context/AuthContext.jsx';
 import CareTeam from './components/CareTeam';
 import HowItWorks from './components/HowItWorks';
 import DoctorModal from './components/DoctorModal';
 import PatientDashboard from './components/PatientDashboard';
+import DoctorDashboard from './components/DoctorDashboard';
+import LoginPage from './components/LoginPage';
 
 // Intersection Observer Hook for Scroll Reveals
 function useScrollReveal() {
@@ -22,13 +25,13 @@ function useScrollReveal() {
   return ref;
 }
 
-export default function App() {
+// === HOMEPAGE COMPONENT (isolated so hooks are stable) ===
+function HomePage({ onShowLogin }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [confirmData, setConfirmData] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState("");
   const [modalDoctor, setModalDoctor] = useState(null);
-  const [appointments, setAppointments] = useState([]);
 
   const handleDoctorClick = (doctor) => {
     setModalDoctor(doctor);
@@ -38,14 +41,6 @@ export default function App() {
   const handleModalClose = () => {
     setModalDoctor(null);
     document.body.style.overflow = '';
-  };
-
-  const handleBookAppointment = (appointment) => {
-    setAppointments(prev => [appointment, ...prev]);
-  };
-
-  const handleCancelAppointment = (id) => {
-    setAppointments(prev => prev.filter(a => a.id !== id));
   };
 
   // Scroll header effect
@@ -106,6 +101,10 @@ export default function App() {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1.1L6.6 10.8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
               {clinicConfig.phone}
             </a>
+            <button className="btn btn--outline btn--small nav-portal-btn" onClick={onShowLogin}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.6"/></svg>
+              Login / Portal
+            </button>
             <a href="#appointment" className="btn btn--primary btn--small">Book a visit</a>
             <button className="nav-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Open menu" aria-expanded={mobileMenuOpen}>
               <span></span><span></span><span></span>
@@ -119,6 +118,7 @@ export default function App() {
           <a href="#visit" onClick={() => setMobileMenuOpen(false)}>How it works</a>
           <a href="#location" onClick={() => setMobileMenuOpen(false)}>Hours &amp; location</a>
           <a href="#appointment" onClick={() => setMobileMenuOpen(false)}>Book a visit</a>
+          <button className="mobile-login-btn" onClick={() => { setMobileMenuOpen(false); onShowLogin(); }}>Login / Portal</button>
           <a href={`tel:+1${clinicConfig.phone.replace(/[^0-9]/g, '')}`}>Call {clinicConfig.phone}</a>
         </div>
       </header>
@@ -293,8 +293,6 @@ export default function App() {
         </section>
       </main>
 
-      <PatientDashboard appointments={appointments} onCancel={handleCancelAppointment} />
-
       <footer style={{background:'var(--ink)', color:'rgba(243,246,245,0.85)', padding:'64px 0 28px'}}>
         <div className="wrap">
           <div className="footer-bottom">
@@ -308,9 +306,38 @@ export default function App() {
         <DoctorModal
           doctor={modalDoctor}
           onClose={handleModalClose}
-          onBook={handleBookAppointment}
+          onBook={() => {}}
         />
       )}
     </>
   );
+}
+
+// === MAIN APP (no hooks in JSX — safe conditional rendering) ===
+export default function App() {
+  const { user } = useAuth();
+  const [showLogin, setShowLogin] = useState(false);
+  const [appointments, setAppointments] = useState([]);
+
+  const handleCancelAppointment = (id) => {
+    setAppointments(prev => prev.filter(a => a.id !== id));
+  };
+
+  // Login page
+  if (showLogin && !user) {
+    return <LoginPage onBack={() => setShowLogin(false)} />;
+  }
+
+  // Patient dashboard
+  if (user && user.role === 'patient') {
+    return <PatientDashboard liveAppointments={appointments} onCancel={handleCancelAppointment} />;
+  }
+
+  // Doctor dashboard
+  if (user && user.role === 'doctor') {
+    return <DoctorDashboard appointments={appointments} />;
+  }
+
+  // Default: homepage
+  return <HomePage onShowLogin={() => setShowLogin(true)} />;
 }

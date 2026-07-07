@@ -806,3 +806,501 @@
     .modal-form-row{ grid-template-columns:1fr; }
     .dashboard-grid{ grid-template-columns:1fr; }
   }
+
+  /* ============================================ */
+  /*          LOGIN PAGE                          */
+  /* ============================================ */
+  .login-page{
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(145deg, #0F1F27 0%, #162B35 40%, #123F3D 100%);
+    position:relative; overflow:hidden;
+    padding:20px;
+  }
+  .login-bg-grid{
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(243,246,245,0.03) 0, rgba(243,246,245,0.03) 1px, transparent 1px, transparent 48px),
+      repeating-linear-gradient(90deg, rgba(243,246,245,0.03) 0, rgba(243,246,245,0.03) 1px, transparent 1px, transparent 48px);
+    animation:gridDrift 40s linear infinite;
+  }
+  .login-card{
+    position:relative; z-index:1;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:22px;
+    padding:40px 36px;
+    max-width:420px; width:100%;
+    box-shadow:0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05) inset;
+    animation:modalSlideUp 0.5s ease-out;
+  }
+  .login-brand{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:28px;
+  }
+  .login-brand-mark{
+    width:36px; height:36px; border-radius:10px;
+    background:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .login-brand-mark svg{width:18px; height:18px;}
+  .login-brand-name{
+    font-family:var(--font-display); font-size:17px;
+    font-weight:600; color:var(--mist);
+  }
+  .login-title{
+    font-family:var(--font-display); font-size:26px;
+    color:var(--mist); margin:0 0 8px; font-weight:600;
+  }
+  .login-subtitle{
+    font-size:14.5px; color:rgba(243,246,245,0.55);
+    margin:0 0 26px; line-height:1.5;
+  }
+
+  /* Tabs */
+  .login-tabs{
+    display:flex; gap:6px;
+    background:rgba(255,255,255,0.06);
+    border-radius:12px; padding:4px;
+    margin-bottom:24px;
+  }
+  .login-tab{
+    flex:1; display:flex; align-items:center; justify-content:center;
+    gap:7px; padding:10px 16px;
+    font-family:var(--font-body); font-size:14px; font-weight:600;
+    color:rgba(243,246,245,0.5);
+    background:transparent; border:none; border-radius:9px;
+    cursor:pointer; transition:all 0.25s ease;
+  }
+  .login-tab:hover{color:rgba(243,246,245,0.8);}
+  .login-tab.is-active{
+    background:rgba(255,255,255,0.12);
+    color:var(--mist);
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Form */
+  .login-form{margin-top:0;}
+  .login-fields{
+    animation:modalFadeIn 0.3s ease-out;
+  }
+  .login-field{
+    display:flex; flex-direction:column; gap:7px;
+    margin-bottom:16px;
+  }
+  .login-field label{
+    font-size:12.5px; font-weight:600; color:rgba(243,246,245,0.6);
+    text-transform:uppercase; letter-spacing:0.06em;
+    font-family:var(--font-mono);
+  }
+  .login-field input,
+  .login-field select{
+    font-family:var(--font-body); font-size:15px;
+    padding:12px 14px;
+    border:1.5px solid rgba(255,255,255,0.12);
+    border-radius:10px;
+    background:rgba(255,255,255,0.06);
+    color:var(--mist);
+    transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .login-field input::placeholder{color:rgba(243,246,245,0.3);}
+  .login-field input:focus,
+  .login-field select:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(31,111,107,0.25);
+  }
+  .login-field select{
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(243,246,245,0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    padding-right:36px;
+  }
+  .login-field select option{
+    background:var(--ink); color:var(--mist);
+  }
+  .login-hint{
+    display:flex; align-items:flex-start; gap:8px;
+    font-size:12px; color:rgba(243,246,245,0.35);
+    margin-bottom:16px; line-height:1.4;
+    font-family:var(--font-mono);
+  }
+  .login-hint svg{flex-shrink:0; margin-top:1px; color:rgba(243,246,245,0.3);}
+
+  .login-error{
+    display:flex; align-items:center; gap:8px;
+    font-size:13px; color:#F87171;
+    background:rgba(248,113,113,0.1);
+    border:1px solid rgba(248,113,113,0.2);
+    border-radius:9px; padding:10px 14px;
+    margin-bottom:16px;
+    animation:modalFadeIn 0.3s ease-out;
+  }
+  .login-error svg{flex-shrink:0; color:#F87171;}
+
+  .login-submit{
+    margin-top:4px;
+    font-size:15px !important;
+    padding:14px 24px !important;
+    border-radius:12px !important;
+  }
+  .login-submit:disabled{opacity:0.7; cursor:wait;}
+
+  .login-spinner{
+    display:inline-block; width:18px; height:18px;
+    border:2.5px solid rgba(22,35,43,0.3);
+    border-top-color:var(--ink);
+    border-radius:50%;
+    animation:spin 0.6s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .login-footer-note{
+    text-align:center; margin-top:22px;
+    font-size:11.5px; color:rgba(243,246,245,0.25);
+    font-family:var(--font-mono);
+  }
+
+  /* Portal button in nav */
+  .nav-portal-btn{
+    gap:6px !important;
+  }
+  .nav-portal-btn svg{flex-shrink:0;}
+
+  .mobile-login-btn{
+    font-size:19px; font-family:var(--font-display);
+    text-decoration:none; color:var(--teal);
+    padding-bottom:14px; border-bottom:1px solid var(--line);
+    background:none; border-top:none; border-left:none; border-right:none;
+    cursor:pointer; text-align:left; font-weight:600;
+  }
+
+  /* ============================================ */
+  /*          DOCTOR DASHBOARD                    */
+  /* ============================================ */
+  .doc-dash{
+    min-height:100vh;
+    background:var(--mist);
+  }
+  .doc-dash-header{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+    position:sticky; top:0; z-index:100;
+    backdrop-filter:blur(10px);
+  }
+  .doc-dash-header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .doc-dash-brand{
+    display:flex; align-items:center; gap:10px;
+  }
+  .doc-dash-user{
+    display:flex; align-items:center; gap:12px;
+  }
+  .doc-dash-avatar{
+    width:38px; height:38px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:17px;
+    font-weight:600; color:#fff; flex-shrink:0;
+  }
+  .doc-dash-user-name{
+    display:block; font-size:14px; font-weight:600; color:var(--ink);
+  }
+  .doc-dash-user-role{
+    display:block; font-size:11px; font-family:var(--font-mono);
+    color:var(--slate); text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .doc-dash-logout{
+    display:flex; align-items:center; gap:6px;
+    font-family:var(--font-body); font-size:13px;
+    font-weight:600; color:var(--slate);
+    background:var(--mist); border:1px solid var(--line);
+    border-radius:8px; padding:8px 14px;
+    cursor:pointer; transition:all 0.2s;
+    margin-left:8px;
+  }
+  .doc-dash-logout:hover{
+    background:#FDECEA; color:#B3261E; border-color:#F5C6CB;
+  }
+
+  .doc-dash-main{
+    padding:40px 0 80px;
+  }
+  .doc-dash-welcome{
+    margin-bottom:32px;
+  }
+  .doc-dash-welcome h1{
+    font-family:var(--font-display); font-size:clamp(28px,3.5vw,36px);
+    color:var(--ink); margin:0 0 6px;
+  }
+  .doc-dash-welcome p{
+    font-size:15.5px; color:var(--slate); margin:0;
+  }
+
+  /* Stats */
+  .doc-dash-stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+    margin-bottom:36px;
+  }
+  .pat-dash-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    margin-bottom:36px;
+  }
+  .doc-dash-stat-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 20px;
+    box-shadow:var(--shadow-card);
+    transition:all 0.25s;
+  }
+  .doc-dash-stat-card:hover{
+    box-shadow:var(--shadow-hover);
+    transform:translateY(-2px);
+  }
+  .doc-dash-stat-num{
+    display:block;
+    font-family:var(--font-display); font-size:32px;
+    font-weight:600; color:var(--teal-deep); line-height:1;
+  }
+  .doc-dash-stat-next{
+    font-size:22px; color:var(--available);
+  }
+  .doc-dash-stat-label{
+    display:block; margin-top:8px;
+    font-size:12.5px; color:var(--slate);
+    font-family:var(--font-mono); letter-spacing:0.02em;
+  }
+
+  /* Main grid */
+  .doc-dash-grid{
+    display:grid; grid-template-columns:1.3fr 0.7fr; gap:28px;
+  }
+
+  .doc-dash-section{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:var(--shadow-card);
+  }
+  .pat-dash-section{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:var(--shadow-card);
+  }
+  .doc-dash-section-header{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .doc-dash-section-header svg{color:var(--teal);}
+  .doc-dash-section-header h2{
+    font-family:var(--font-display); font-size:20px;
+    color:var(--ink); margin:0;
+  }
+  .doc-dash-section-header h3{
+    font-family:var(--font-display); font-size:17px;
+    color:var(--ink); margin:0;
+  }
+  .doc-dash-badge{
+    margin-left:auto;
+    font-family:var(--font-mono); font-size:12px;
+    font-weight:600; background:var(--teal-soft);
+    color:var(--teal-deep); padding:3px 10px;
+    border-radius:999px; letter-spacing:0.04em;
+  }
+
+  /* Empty state */
+  .doc-dash-empty{
+    text-align:center; padding:40px 20px;
+    color:var(--slate);
+  }
+  .doc-dash-empty svg{color:var(--line); margin-bottom:12px;}
+  .doc-dash-empty p{font-size:14px;}
+
+  /* Patient cards */
+  .doc-dash-patients{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .doc-dash-patient-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    transition:all 0.25s;
+    animation:modalFadeIn 0.4s ease-out;
+  }
+  .doc-dash-patient-card:hover{
+    box-shadow:var(--shadow-hover);
+    border-color:var(--teal-soft);
+  }
+  .doc-dash-patient-top{
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:14px; padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .doc-dash-patient-avatar{
+    width:40px; height:40px; border-radius:10px;
+    background:var(--teal-soft); color:var(--teal-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:18px;
+    font-weight:600; flex-shrink:0;
+  }
+  .doc-dash-patient-info h3{
+    font-size:15px; margin:0; color:var(--ink);
+  }
+  .doc-dash-patient-reason{
+    font-size:12px; color:var(--teal);
+    font-family:var(--font-mono); font-weight:600;
+    letter-spacing:0.03em;
+  }
+  .doc-dash-patient-details{
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .doc-dash-patient-detail{
+    display:flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--ink-soft);
+  }
+  .doc-dash-patient-detail svg{color:var(--teal); flex-shrink:0;}
+
+  /* Schedule */
+  .doc-dash-schedule{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .doc-dash-schedule-day{
+    padding:14px 16px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    transition:all 0.2s;
+  }
+  .doc-dash-schedule-day:hover{
+    background:var(--teal-soft);
+    border-color:rgba(31,111,107,0.2);
+  }
+  .doc-dash-schedule-day-label{
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:600; color:var(--ink);
+    margin-bottom:10px;
+  }
+  .doc-dash-day-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--available);
+    box-shadow:0 0 0 0 rgba(62,142,91,0.5);
+    animation:pulse 2s infinite;
+  }
+  .doc-dash-schedule-times{
+    display:flex; flex-wrap:wrap; gap:6px;
+  }
+  .doc-dash-time-chip{
+    font-family:var(--font-mono); font-size:12px;
+    font-weight:500; letter-spacing:0.02em;
+    padding:6px 12px; border-radius:8px;
+    background:var(--mist); color:var(--ink-soft);
+    border:1px solid var(--line);
+    transition:all 0.2s;
+  }
+  .doc-dash-time-chip:hover{
+    border-color:var(--teal); color:var(--teal);
+    background:var(--teal-soft);
+  }
+
+  /* Hours table */
+  .doc-dash-hours-table{
+    width:100%; border-collapse:collapse;
+    margin-top:12px;
+  }
+  .doc-dash-hours-table tr{
+    border-bottom:1px solid var(--line);
+  }
+  .doc-dash-hours-table tr:last-child{border-bottom:none;}
+  .doc-dash-hours-table td{
+    padding:10px 0; font-size:13.5px;
+  }
+  .doc-dash-hours-table td:first-child{color:var(--slate);}
+  .doc-dash-hours-table td:last-child{
+    text-align:right; font-family:var(--font-mono);
+    font-size:12.5px; font-weight:500;
+  }
+  .doc-dash-hours-table tr.today td{
+    color:var(--teal); font-weight:600;
+  }
+
+  /* Info card */
+  .doc-dash-info-card{
+    margin-top:22px;
+    background:var(--mist);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 20px;
+  }
+  .doc-dash-info-card h4{
+    font-family:var(--font-mono); font-size:11.5px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--teal); font-weight:600;
+    margin:0 0 14px;
+  }
+  .doc-dash-info-row{
+    display:flex; justify-content:space-between;
+    align-items:center; padding:8px 0;
+    border-bottom:1px solid rgba(222,230,228,0.6);
+    font-size:13.5px;
+  }
+  .doc-dash-info-row:last-child{border-bottom:none;}
+  .doc-dash-info-label{
+    color:var(--slate); font-weight:500;
+  }
+
+  /* ============================================ */
+  /*          PATIENT DASHBOARD (Full Page)       */
+  /* ============================================ */
+  .pat-dash{
+    min-height:100vh;
+    background:var(--mist);
+  }
+  .pat-dash-header{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+    position:sticky; top:0; z-index:100;
+    backdrop-filter:blur(10px);
+  }
+  .pat-dash-header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .pat-dash-avatar{
+    width:38px; height:38px; border-radius:10px;
+    background:linear-gradient(135deg, var(--teal) 0%, #2A9D8F 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:17px;
+    font-weight:600; color:#fff; flex-shrink:0;
+  }
+  .pat-dash-main{
+    padding:40px 0 80px;
+  }
+  .pat-dash-clinic-info{
+    margin-top:32px; max-width:400px;
+  }
+
+  /* ============================================ */
+  /*          DASHBOARD RESPONSIVE               */
+  /* ============================================ */
+  @media(max-width:980px){
+    .doc-dash-stats{grid-template-columns:repeat(2,1fr);}
+    .pat-dash-stats{grid-template-columns:repeat(2,1fr);}
+    .doc-dash-grid{grid-template-columns:1fr;}
+    .doc-dash-user-name, .doc-dash-user-role{display:none;}
+  }
+  @media(max-width:600px){
+    .doc-dash-stats{grid-template-columns:1fr;}
+    .pat-dash-stats{grid-template-columns:1fr;}
+    .doc-dash-section, .pat-dash-section{padding:20px 16px; border-radius:14px;}
+    .login-card{padding:28px 22px; border-radius:16px;}
+    .doc-dash-logout span{display:none;}
+    .doc-dash-header-inner{gap:8px;}
+    .nav-portal-btn{display:none !important;}
+  }
